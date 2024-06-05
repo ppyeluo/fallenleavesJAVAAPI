@@ -9,7 +9,7 @@ import java.util.List;
 public interface UserMapper {
     @Select("SELECT * FROM user WHERE phone = #{phone} AND password = #{password}")
     User login(@Param("phone") String phone, @Param("password") String password);
-    @Select("SELECT * FROM address WHERE user_id = #{userId}")
+    @Select("SELECT * FROM address WHERE user_id = #{id}")
     @Results({
             @Result(property = "isDefault", column = "default")
     })
