@@ -45,9 +45,9 @@ public class CollectController {
     }
 
     // 从我的收藏中删除商品
-    @DeleteMapping("/removeCollect")
+    @DeleteMapping("/removeCollect/{id}")
     public ResponseEntity removeCollect(@RequestHeader("Authorization") String authHeader,
-                                        @PathVariable("commodityId") String commodityId){
+                                        @PathVariable("id") String commodityId){
         // 从 authHeader 中提取 token
         String token = extractTokenFromHeader(authHeader);
         if(token == "") {
