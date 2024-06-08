@@ -81,7 +81,7 @@ public class CartController {
         int deletedCount = cartService.batchRemoveCart(user.getId(), request.getNumberList());
         Map<String, Integer> response = new HashMap<>();
         response.put("deletedCount", deletedCount);
-        return ResponseEntity.ok(response);
+        return ResponseHelper.sendResponse(200,null);
     }
 
     private String extractTokenFromHeader(String authHeader) {
