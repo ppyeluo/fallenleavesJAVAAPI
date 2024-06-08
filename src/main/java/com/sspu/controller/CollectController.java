@@ -31,16 +31,16 @@ public class CollectController {
         return ResponseHelper.sendResponse(200, list);
     }
     // 向我的收藏中添加商品
-    @PostMapping("/addCollect")
+    @GetMapping("/addCollect/{id}")
     public ResponseEntity addCollect(@RequestHeader("Authorization") String authHeader,
-                                     @RequestBody AddCollectRequest request){
+                                     @PathVariable("id") String commodityId){
         // 从 authHeader 中提取 token
         String token = extractTokenFromHeader(authHeader);
         if(token == "") {
             return ResponseHelper.sendResponse(401, null);
         }
         User user = JWTUtil.decodeToken(token);
-        AddCollectResponse response = collectService.addCollect(request.getUserId(), request.getCommodityId());
+        AddCollectResponse response = collectService.addCollect(user.getId(), commodityId);
         return ResponseHelper.sendResponse(200, response);
     }
 
